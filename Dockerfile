@@ -6,12 +6,13 @@ RUN apt-get update
 
 # Install aria2
 RUN apt-get install -y aria2
+RUN mkdir -p /etc/aria2;touch /etc/aria2/aria2.session
 
 # aria2.conf
 ADD /data/aria2.conf /etc/aria2/aria2.conf
 
 # aria2 downloaded callback
-ADD /data/download-complete.sh /etc/conf/aria2/download-complete.sh
+ADD /data/download-complete.sh /etc/aria2/download-complete.sh
 
 EXPOSE 6800 
 
