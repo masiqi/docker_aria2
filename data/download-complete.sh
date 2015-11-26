@@ -1,13 +1,14 @@
 #!/bin/bash
 
-fromdir="/tmp/aria2-images"
 todir="/data/aria2/download"
 rawfile="$3"
-filename=`basename $rawfile`
+filedir=`dirname $rawfile`
 
-tofile="${rawfile/#${fromdir}/${todir}}"
-todir="${tofile%%${filename}}"
+todir="$todir/$filedir"
 
-mkdir -p $todir
 
-mv $rawfile $tofile
+if [ ! -d $todir ]; then 
+	mkdir -p $todir 
+fi
+
+mv $rawfile $todir/.
